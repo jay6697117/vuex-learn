@@ -1,14 +1,13 @@
 <template>
   <div class="hello">
     <h1>countProp:{{ countProp }}</h1>
-    <h1>numHello: {{ numHello }}</h1>
+    <h1>timeHello: {{ timeHello }}</h1>
     <button @click="increment">+</button>
     <button @click="decrement">-</button>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Hello',
   props: {
@@ -26,8 +25,8 @@ export default {
     }
   },
   computed: {
-    numHello() {
-      return this.$store.state.count;
+    timeHello() {
+      return this.$store.getters.timeNow('YY-MM-DD dddd') + ', 长度: ' + this.$store.getters.timeLength('YY-MM-DD dddd');
     }
   }
 };
@@ -35,25 +34,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.hello{
+.hello {
   border: 1px solid #000;
   padding: 0 50px 35px;
   width: 60vw;
   margin: 0 auto;
-
 }
-.hello button{
+.hello button {
   padding: 2px 10px;
 }
-.hello button:first-of-type{
-  margin-right: 20px;;
+.hello button:first-of-type {
+  margin-right: 20px;
 }
 
-.hello h1:nth-of-type(1){
-  color:red;
+.hello h1:nth-of-type(1) {
+  color: red;
 }
 
-.hello h1:nth-of-type(2){
-  color:blue;
+.hello h1:nth-of-type(2) {
+  color: blue;
 }
 </style>

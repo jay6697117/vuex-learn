@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
+    <h1>timeApp: {{ timeApp }}</h1>
     <Hello :countProp="numApp" />
   </div>
 </template>
@@ -17,14 +18,19 @@ export default {
     return {};
   },
   computed: {
-    numApp () {
+    numApp() {
       return this.$store.state.count;
+    },
+    timeApp() {
+      return (
+        this.$store.getters.timeNow('YYMMDD h:mm:ss') + ', 长度: ' + this.$store.getters.timeLength('YYMMDD h:mm:ss')
+      );
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -32,5 +38,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+h1 {
+  background: #999;
+  color: white;
+  width: 60vw;
+  margin: 0 auto 20px;
 }
 </style>
