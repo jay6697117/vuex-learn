@@ -1,0 +1,5 @@
+//type常量
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
+const RESETAGE = 'RESETAGE';
+export { INCREMENT, DECREMENT, RESETAGE };

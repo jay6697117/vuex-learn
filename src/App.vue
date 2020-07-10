@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <h1>timeApp: {{ timeApp }}</h1>
-    <Hello :countProp="numApp" />
+    <Hello :ageProp="ageApp" />
   </div>
 </template>
 
@@ -18,8 +18,8 @@ export default {
     return {};
   },
   computed: {
-    numApp() {
-      return this.$store.state.count;
+    ageApp() {
+      return this.$store.state.student.age;
     },
     timeApp() {
       return (

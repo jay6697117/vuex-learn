@@ -2,22 +2,32 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import moment from 'moment';
+import { INCREMENT, DECREMENT, RESETAGE } from './mutation-types';
 
 Vue.use(Vuex);
-
 export default new Vuex.Store({
   state: {
-    count: 0,
-    dateNow: new Date()
+    initAge: 0,
+    dateNow: new Date(),
+    student: {
+      name: '小明',
+      sex: '女',
+      age: 0
+    }
   },
   mutations: {
-    increment(state) {
-      state.count += 1;
-      console.log('increment state.count :>> ', state.count);
+    [INCREMENT](state, payload) {
+      state.student.age += payload.num;
+      console.log('increment state.student.age :>> ', state.student.age);
     },
-    decrement(state) {
-      state.count -= 1;
-      console.log('decrement state.count :>> ', state.count);
+    [DECREMENT](state, payload) {
+      state.student.age -= payload.num;
+      console.log('decrement state.student.age :>> ', state.student.age);
+    },
+    [RESETAGE](state, payload) {
+      Vue.set(state.student, 'age', payload.age);
+      // state.student = { ...state.student, age: payload.age };
+      console.log('state.initAge :>> ', state.initAge);
     }
   },
   getters: {
