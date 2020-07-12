@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img alt="Vue logo" :src="logoPath" />
     <h1>timeApp: {{ timeApp }}</h1>
     <Hello :ageProp="ageApp" />
   </div>
@@ -8,6 +8,8 @@
 
 <script>
 import Hello from './components/Hello.vue';
+import logo from './assets/logo.png';
+// console.log('logo :>> ', logo); //logo :>>  /img/logo.82b9c7a5.png
 
 export default {
   name: 'App',
@@ -15,16 +17,21 @@ export default {
     Hello
   },
   data() {
-    return {};
+    return {
+      logoPath: logo
+    };
   },
   computed: {
     ageApp() {
+      if (this.$store.state.student.title) {
+        return this.$store.state.student.title;
+      }
       return this.$store.state.student.age;
     },
     timeApp() {
-      return (
-        this.$store.getters.timeNow('YYMMDD h:mm:ss') + ', 长度: ' + this.$store.getters.timeLength('YYMMDD h:mm:ss')
-      );
+      return `${this.$store.getters.timeNow('YYYYMMDD h:mm:ss')}, 长度: ${this.$store.getters.timeLength(
+        'YYYYMMDD h:mm:ss'
+      )}`;
     }
   }
 };
