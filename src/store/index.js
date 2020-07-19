@@ -2,11 +2,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import moment from 'moment';
-import types from '../store/mutation-types';
+import types from '../store/types';
 
 Vue.use(Vuex);
 
-/* eslint-disable */
 export default new Vuex.Store({
   //状态类似data
   state: {
@@ -15,7 +14,8 @@ export default new Vuex.Store({
     student: {
       name: '小明',
       sex: '女',
-      age: 0
+      age: 0,
+      title:''
     }
   },
   //类似计算属性
@@ -80,7 +80,7 @@ export default new Vuex.Store({
   },
   // 类似methods(不直接变更状态,可以包含异步操作,通过store.dispatch触发)
   actions: {
-    [types.INCREMENT_ASYN]: async ({ commit, dispatch, state }, payload) => {
+    [types.INCREMENT_ASYNC]: async ({ commit, dispatch, state }, payload) => {
       commit(types.INCREMENT, { title: '请求中...' });
 
       //promise
@@ -94,13 +94,13 @@ export default new Vuex.Store({
         commit(types.INCREMENT, { title: '请求失败' });
       }
     },
-    [types.DECREMENT_ASYN]: ({ commit, state }, payload) => {
+    [types.DECREMENT_ASYNC]: ({ commit, state }, payload) => {
       commit(types.DECREMENT, { title: '请求中...' });
       setTimeout(() => {
         commit(types.DECREMENT, payload);
       }, 2000);
     },
-    [types.RESETAGE_ASYN]: ({ commit, state }, payload) => {
+    [types.RESETAGE_ASYNC]: ({ commit, state }, payload) => {
       commit(types.RESETAGE, { title: '请求中...' });
       setTimeout(() => {
         commit(types.RESETAGE, payload);

@@ -26,8 +26,7 @@
 </template>
 
 <script>
-/* eslint-disable */
-import types from '../store/mutation-types';
+import types from '../store/types';
 
 export default {
   name: 'Hello',
@@ -35,26 +34,28 @@ export default {
     ageProp: { type: [Number, String], default: 0 }
   },
   data() {
-    return {};
+    return {
+      msg: 'hello world'
+    };
   },
   methods: {
     increment() {
       this.$store.commit(types.INCREMENT, { num: 10, isAsyn: false });
     },
     incrementAsyn() {
-      this.$store.dispatch(types.INCREMENT_ASYN, { num: 10, isAsyn: true });
+      this.$store.dispatch(types.INCREMENT_ASYNC, { num: 10, isAsyn: true });
     },
     decrement() {
       this.$store.commit(types.DECREMENT, { num: 5, isAsyn: false });
     },
     decrementAsyn() {
-      this.$store.dispatch(types.DECREMENT_ASYN, { num: 5, isAsyn: true });
+      this.$store.dispatch(types.DECREMENT_ASYNC, { num: 5, isAsyn: true });
     },
     resetAge() {
       this.$store.commit(types.RESETAGE, { age: this.$store.state.initAge, isAsyn: false });
     },
     resetAgeAsyn() {
-      this.$store.dispatch(types.RESETAGE_ASYN, { age: this.$store.state.initAge, isAsyn: true });
+      this.$store.dispatch(types.RESETAGE_ASYNC, { age: this.$store.state.initAge, isAsyn: true });
     }
   },
   computed: {

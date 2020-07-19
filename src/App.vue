@@ -1,20 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" :src="logoPath" />
-    <h1>timeApp: {{ timeApp }}</h1>
-    <Hello :ageProp="ageApp" />
+    <img alt="Vue logo" height="100" :src="logoPath" />
+    <div class="time-app">timeApp: {{ timeApp }}</div>
+    <div class="cpt-wrap">
+      <div class="cpt-pd">
+        <Hello :ageProp="ageApp" />
+      </div>
+      <div class="cpt-pd">
+        <Demo />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Hello from './components/Hello.vue';
+import Demo from './components/Demo.vue';
 import logo from './assets/logo.png';
-// console.log('logo :>> ', logo); //logo :>>  /img/logo.82b9c7a5.png
 
 export default {
   name: 'App',
   components: {
-    Hello
+    Hello,
+    Demo
   },
   data() {
     return {
@@ -37,7 +45,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,10 +55,16 @@ export default {
   margin-top: 60px;
 }
 
-h1 {
+.time-app {
   background: #999;
   color: white;
   width: 60vw;
   margin: 0 auto 20px;
+}
+.cpt-wrap{
+  padding-bottom: 100px;
+}
+.cpt-pd {
+  padding: 15px 0;
 }
 </style>
